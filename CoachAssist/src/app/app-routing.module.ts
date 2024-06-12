@@ -6,16 +6,17 @@ const routes: Routes = [
   {
     path: 'students',
     title: 'Ученики',
-    loadComponent: () => import('./students/students.component').then(m => m.StudentsComponent),
+    loadChildren: () => import('./students/students.module').then(m => m.StudentsModule),
+    data: { preload: true }
   },
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('./students/students.component').then(m => m.StudentsComponent),
+    redirectTo: '/students'
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '/students'
   }
 ];
 
