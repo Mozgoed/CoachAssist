@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve --open",
     "build": "ng build",
+    "serve": "http-server -p 8080 dist/coach-assist --open",
+    "start:prod": "npm run build && npm run serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy:build": "ng build --base-href=https://Mozgoed.github.io/CoachAssist/",
