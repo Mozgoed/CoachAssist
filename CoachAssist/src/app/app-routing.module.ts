@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
 import { PreloadingService } from './services/preloading.service';
 
 const routes: Routes = [
   {
+    path: 'students/:id',
+    loadComponent: () => import('./pages/student/student.component').then(m => m.StudentComponent),
+    title: (route: ActivatedRouteSnapshot) => `Ученик номер ${route.paramMap.get('id')}`
+  },
+  {
     path: 'students',
     title: 'Ученики',
-    loadChildren: () => import('./students/students.module').then(m => m.StudentsModule),
+    loadChildren: () => import('./pages/students/students.module').then(m => m.StudentsModule),
     data: { preload: true }
   },
   {

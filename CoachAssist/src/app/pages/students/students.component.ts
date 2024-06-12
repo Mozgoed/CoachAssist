@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, of} from "rxjs";
-import {IStudent} from "../interfaces/student";
-import {ApiService} from "../services/api.service";
+import {IStudent} from "../../interfaces/student";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-students',

@@ -7,8 +7,8 @@
     <mat-card-content>
       <p>{{ student.info }}</p>
     </mat-card-content>
-    <mat-card-actions>
-      <button disabled mat-button>Детали пока недоступны</button>
+    <mat-card-actions align="end">
+      <button [routerLink]="['/students', student.id]" mat-stroked-button color="primary">Детали</button>
     </mat-card-actions>
   </mat-card>
 </div>

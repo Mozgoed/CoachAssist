@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {delay, Observable, of} from 'rxjs';
+import {delay, map, of} from 'rxjs';
 import { IStudent } from '../interfaces/student';
 import {environment} from "../../environments/environment";
 
@@ -54,12 +54,12 @@ export class ApiService {
     }
   }
 
-  // public getPlayerById$(id: number) {
-  //   return this.getAllStudents$().pipe(
-  //     map(players => players.find(player => player.id == id))
-  //   );
-  // }
-  //
+  public getStudentById$(id: number) {
+    return this.getAllStudents$().pipe(
+      map(students => students.find(student => student.id == id))
+    );
+  }
+
   // public getPlayersByName$(name: string) {
   //   return this.getAllStudents$().pipe(
   //     map(players => players.filter(player => player.name.toLowerCase().includes(name.toLowerCase())))

@@ -8,7 +8,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
-import {StudentsModule} from "./students/students.module";
+import {StudentsModule} from "./pages/students/students.module";
+import { StudentComponent } from './pages/student/student.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {StudentsModule} from "./students/students.module";
     MatButtonModule,
     MatCardModule,
     HttpClientModule,
-    StudentsModule
+    StudentsModule,
+    StudentComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

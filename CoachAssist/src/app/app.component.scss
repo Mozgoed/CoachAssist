@@ -6,7 +6,11 @@
   height: 100vh;
   padding: 5px;
   margin-top: 4px;
-  gap: 5px;
+  gap: 10px;
+}
+
+.router {
+  flex-grow: 1;
 }
 
 h1 {

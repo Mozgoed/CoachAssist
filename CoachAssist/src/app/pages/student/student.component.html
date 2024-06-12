@@ -1,0 +1,19 @@
+<h2 *ngIf="student$ | async as student; else loading">Профиль {{ student.name }}</h2>
+
+<div *ngIf="student$ | async as student">
+  <form class="ProfileWrapper">
+    <mat-form-field class="full-width">
+      <mat-label>ФИО</mat-label>
+      <input matInput value="{{student.name}}">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Класс</mat-label>
+      <input matInput value="{{student.grade}}">
+    </mat-form-field>
+  </form>
+</div>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
