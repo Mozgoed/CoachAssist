@@ -1,17 +1,56 @@
-<h2 *ngIf="student$ | async as student; else loading">Профиль {{ student.name }}</h2>
+<h2 *ngIf="student$ | async as student; else loading">Профиль #{{student.id}} {{ student.name }}</h2>
 
 <div *ngIf="student$ | async as student">
   <form class="ProfileWrapper">
     <mat-form-field class="full-width">
       <mat-label>ФИО</mat-label>
-      <input matInput value="{{student.name}}">
+      <input matInput value="{{student.name}}" [disabled]="isDisabled">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Дата рождения</mat-label>
+      <input matInput [matDatepicker]="picker" [disabled]="isDisabled">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Телефон</mat-label>
+      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.phone}}" [disabled]="isDisabled">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" *ngIf="student.date">
+      <mat-label>Предмет</mat-label>
+      <input matInput value="{{student.subject}}" [disabled]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Класс</mat-label>
-      <input matInput value="{{student.grade}}">
+      <input matInput value="{{student.grade}}" [disabled]="isDisabled">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" *ngIf="student.date">
+      <mat-label>Отец</mat-label>
+      <input matInput value="{{student.father}}" [disabled]="isDisabled">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Телефон отца</mat-label>
+      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.fatherPhone}}" [disabled]="isDisabled">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" *ngIf="student.date">
+      <mat-label>Мать</mat-label>
+      <input matInput value="{{student.mother}}" [disabled]="isDisabled">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Телефон матери</mat-label>
+      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.motherPhone}}" [disabled]="isDisabled">
     </mat-form-field>
   </form>
+  <mat-checkbox class="full-width" [checked]="!isDisabled" (change)="toggleDisabled()">Редактирование</mat-checkbox>
 </div>
 
 <ng-template #loading>

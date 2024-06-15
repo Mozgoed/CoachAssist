@@ -8,6 +8,9 @@ import {AsyncPipe, CommonModule} from "@angular/common";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-student',
@@ -21,10 +24,14 @@ import {MatSelectModule} from "@angular/material/select";
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
   ]
 })
 export class StudentComponent implements OnInit {
-  public student$: Observable<IStudent | undefined> = of(undefined);
+  student$: Observable<IStudent | undefined> = of(undefined);
+  isDisabled = true;
 
   constructor(
     private api: ApiService,
@@ -36,5 +43,9 @@ export class StudentComponent implements OnInit {
       map(params => params.get('id') ?? ''),
       switchMap(id => this.api.getStudentById$(Number(id)))
     );
+  }
+
+  toggleDisabled() {
+    this.isDisabled = !this.isDisabled;
   }
 }
