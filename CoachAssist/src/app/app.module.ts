@@ -10,22 +10,24 @@ import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {StudentsModule} from "./pages/students/students.module";
 import { StudentComponent } from './pages/student/student.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCardModule,
-    HttpClientModule,
-    StudentsModule,
-    StudentComponent,
-  ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCardModule,
+        HttpClientModule,
+        StudentsModule,
+        StudentComponent,
+        MatIconModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

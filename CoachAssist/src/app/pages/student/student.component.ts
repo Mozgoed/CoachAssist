@@ -48,4 +48,8 @@ export class StudentComponent implements OnInit {
   toggleDisabled() {
     this.isDisabled = !this.isDisabled;
   }
+
+  callPhone(phone: string | undefined) {
+    if (this.isDisabled && phone) window.location.href = `tel:${phone}`;
+  }
 }

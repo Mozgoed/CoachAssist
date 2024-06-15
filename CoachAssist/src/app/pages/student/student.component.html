@@ -1,4 +1,4 @@
-<h2 *ngIf="student$ | async as student; else loading">Профиль #{{student.id}} {{ student.name }}</h2>
+<h2 *ngIf="student$ | async as student; else loading">#{{student.id}} {{ student.name }}</h2>
 
 <div *ngIf="student$ | async as student">
   <form class="ProfileWrapper">
@@ -15,9 +15,13 @@
       <mat-datepicker #picker [disabled]="isDisabled"></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field class="full-width">
+    <mat-form-field class="full-width" (click)="callPhone(student.phone)">
       <mat-label>Телефон</mat-label>
-      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.phone}}" [readonly]="isDisabled">
+      <input
+        type="tel"
+        matInput placeholder="+7-903-123-4567"
+        value="{{student.phone}}"
+        [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width" *ngIf="student.date">
@@ -35,7 +39,7 @@
       <input matInput value="{{student.father}}" [readonly]="isDisabled">
     </mat-form-field>
 
-    <mat-form-field class="full-width">
+    <mat-form-field class="full-width" (click)="callPhone(student.fatherPhone)">
       <mat-label>Телефон отца</mat-label>
       <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.fatherPhone}}" [readonly]="isDisabled">
     </mat-form-field>
@@ -45,7 +49,7 @@
       <input matInput value="{{student.mother}}" [readonly]="isDisabled">
     </mat-form-field>
 
-    <mat-form-field class="full-width">
+    <mat-form-field class="full-width" (click)="callPhone(student.motherPhone)">
       <mat-label>Телефон матери</mat-label>
       <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.motherPhone}}" [readonly]="isDisabled">
     </mat-form-field>

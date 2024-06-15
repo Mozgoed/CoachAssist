@@ -15,6 +15,11 @@ const routes: Routes = [
     data: { preload: true }
   },
   {
+    path: 'settings',
+    loadComponent: () => import('./pages/settings/settings.component').then(m => m.SettingsComponent),
+    title: 'Настройки',
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/students'

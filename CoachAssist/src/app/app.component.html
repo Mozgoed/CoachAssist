@@ -10,7 +10,10 @@
     <router-outlet></router-outlet>
   </section>
 
-  <footer>
-    Приложение {{ title }} запущено{{mode}}!
+  <footer routerLink="/settings">
+    {{ title }} запущено{{mode}}!
+    <button mat-icon-button color="primary" routerLink="/settings">
+      <mat-icon>settings</mat-icon>
+    </button>
   </footer>
 </div>

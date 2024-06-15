@@ -9,8 +9,11 @@
   gap: 10px;
 }
 
-.router {
+section.router {
+  display: flex;
+  justify-content: center;
   flex-grow: 1;
+  width: calc(100% - 10px);
 }
 
 h1 {
@@ -33,4 +36,5 @@ footer {
   display: flex;
   align-items: center;
   margin-top: 5px;
+  gap: 10px;
 }

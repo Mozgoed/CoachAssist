@@ -1,0 +1,16 @@
+<div class="SettingsWrapper">
+  <h2>Настройки</h2>
+  <mat-checkbox class="full-width" [checked]="isUseLocalStorage" (change)="toggleLocalStorage()">Использовать localStorage</mat-checkbox>
+  <mat-divider></mat-divider>
+  <button disabled mat-raised-button color="primary" class="full-width">Скачать студентов на компьютер</button>
+  <mat-divider></mat-divider>
+  <mat-form-field class="example-full-width">
+    <mat-label>JSON массив студентов</mat-label>
+    <textarea matInput rows="10" placeholder='[{"id"=1,"name"="Иванов..", ... }]'
+      [(ngModel)]="studentsJson" [disabled]="!isUseLocalStorage"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="putFakeStudents()" [disabled]="!isUseLocalStorage">Подставить фейковых студентов</button>
+  <button mat-raised-button color="accent" (click)="uploadStudents()" [disabled]="!isUseLocalStorage">Вкачать студентов (JSON)</button>
+  <mat-divider></mat-divider>
+  <button mat-raised-button color="warn" (click)="clearStudents()" [disabled]="!isUseLocalStorage">Очистить студентов</button>
+</div>

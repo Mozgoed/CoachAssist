@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {delay, map, of} from 'rxjs';
 import { IStudent } from '../interfaces/student';
 import {environment} from "../../environments/environment";
+import {LocalStorageService} from "./local-storage.service";
 
 const mockStudents: IStudent[] = [
   {
@@ -66,16 +67,24 @@ const mockStudents: IStudent[] = [
   providedIn: 'root'
 })
 export class ApiService {
+  isUseLocalStorage = false;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) { }
 
   public getAllStudents$() {
-    if (environment.production) {
-      return of(mockStudents).pipe(delay(1000));
+    if (this.isUseLocalStorage) {
+      const studentsJson = this.localStorageService.getItem('students');
+      const students: IStudent[] = studentsJson ? studentsJson as IStudent[] : [];
+      return of(students).pipe(delay(1000));
     } else {
-      return this.http.get<IStudent[]>('/assets/mocks/students.json').pipe(delay(1000));
+      if (environment.production) {
+        return of(mockStudents).pipe(delay(1000));
+      } else {
+        return this.http.get<IStudent[]>('/assets/mocks/students.json').pipe(delay(1000));
+      }
     }
   }
 
