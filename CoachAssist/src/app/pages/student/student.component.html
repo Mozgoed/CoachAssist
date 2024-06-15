@@ -4,50 +4,50 @@
   <form class="ProfileWrapper">
     <mat-form-field class="full-width">
       <mat-label>ФИО</mat-label>
-      <input matInput value="{{student.name}}" [disabled]="isDisabled">
+      <input matInput value="{{student.name}}" [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Дата рождения</mat-label>
-      <input matInput [matDatepicker]="picker" [disabled]="isDisabled">
+      <input matInput [matDatepicker]="picker" [readonly]="isDisabled">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker #picker [disabled]="isDisabled"></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Телефон</mat-label>
-      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.phone}}" [disabled]="isDisabled">
+      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.phone}}" [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width" *ngIf="student.date">
       <mat-label>Предмет</mat-label>
-      <input matInput value="{{student.subject}}" [disabled]="isDisabled">
+      <input matInput value="{{student.subject}}" [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Класс</mat-label>
-      <input matInput value="{{student.grade}}" [disabled]="isDisabled">
+      <input matInput value="{{student.grade}}" [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width" *ngIf="student.date">
       <mat-label>Отец</mat-label>
-      <input matInput value="{{student.father}}" [disabled]="isDisabled">
+      <input matInput value="{{student.father}}" [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Телефон отца</mat-label>
-      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.fatherPhone}}" [disabled]="isDisabled">
+      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.fatherPhone}}" [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width" *ngIf="student.date">
       <mat-label>Мать</mat-label>
-      <input matInput value="{{student.mother}}" [disabled]="isDisabled">
+      <input matInput value="{{student.mother}}" [readonly]="isDisabled">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Телефон матери</mat-label>
-      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.motherPhone}}" [disabled]="isDisabled">
+      <input type="tel" matInput placeholder="+7-903-123-4567" value="{{student.motherPhone}}" [readonly]="isDisabled">
     </mat-form-field>
   </form>
   <mat-checkbox class="full-width" [checked]="!isDisabled" (change)="toggleDisabled()">Редактирование</mat-checkbox>
