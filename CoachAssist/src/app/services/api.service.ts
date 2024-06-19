@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import {delay, map, of} from 'rxjs';
 import { IStudent } from '../interfaces/student';
 import {environment} from "../../environments/environment";
-import {LocalStorageService} from "./local-storage.service";
 
 const mockStudents: IStudent[] = [
   {
@@ -69,14 +68,26 @@ const mockStudents: IStudent[] = [
 export class ApiService {
   isUseLocalStorage = false;
 
+  public setIsUseLocalStorage(isUseLocalStorage: boolean): void {
+    this.isUseLocalStorage = isUseLocalStorage;
+    localStorage.setItem('isUseLocalStorage', JSON.stringify(isUseLocalStorage));
+  }
+
   constructor(
     private http: HttpClient,
-    private localStorageService: LocalStorageService
-  ) { }
+  ) {
+    const value = localStorage.getItem('isUseLocalStorage');
+    if (value === null) {
+      localStorage.setItem('isUseLocalStorage', JSON.stringify(false));
+    } else {
+      this.isUseLocalStorage = JSON.parse(value);
+    }
+  }
 
   public getAllStudents$() {
     if (this.isUseLocalStorage) {
-      const studentsJson = this.localStorageService.getItem('students');
+      const value = localStorage.getItem('students');
+      const studentsJson = value ? JSON.parse(value) : null;
       const students: IStudent[] = studentsJson ? studentsJson as IStudent[] : [];
       return of(students).pipe(delay(1000));
     } else {
@@ -94,9 +105,25 @@ export class ApiService {
     );
   }
 
-  // public getPlayersByName$(name: string) {
-  //   return this.getAllStudents$().pipe(
-  //     map(players => players.filter(player => player.name.toLowerCase().includes(name.toLowerCase())))
-  //   );
-  // }
+  public setStudentById$(student: IStudent) {
+    if (this.isUseLocalStorage) {
+      const value = localStorage.getItem('students');
+      const studentsJson = value ? JSON.parse(value) : null;
+      const students: IStudent[] = studentsJson ? studentsJson as IStudent[] : [];
+      const index = students.findIndex(s => s.id === student.id);
+      if (index !== -1) {
+        students[index] = student;
+      } else {
+        students.push(student);
+      }
+
+      localStorage.setItem('students', JSON.stringify(students));
+    } else {
+      if (environment.production) {
+        console.log('Сохранение student', student);
+      } else {
+        console.log('Сохранение student', student);
+      }
+    }
+  }
 }

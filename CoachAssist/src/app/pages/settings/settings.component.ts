@@ -131,6 +131,6 @@ export class SettingsComponent implements OnInit {
 
   toggleLocalStorage() {
     this.isUseLocalStorage = !this.isUseLocalStorage;
-    this.api.isUseLocalStorage = this.isUseLocalStorage;
+    this.api.setIsUseLocalStorage(this.isUseLocalStorage);
   }
 }
