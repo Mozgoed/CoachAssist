@@ -68,6 +68,7 @@ export class StudentComponent implements OnInit {
         fatherPhone: new FormControl(student?.fatherPhone),
         mother: new FormControl(student?.mother),
         motherPhone: new FormControl(student?.motherPhone),
+        info: new FormControl(student?.info),
       });
     });
   }
