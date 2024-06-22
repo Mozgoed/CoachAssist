@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {delay, map, of} from 'rxjs';
-import { IStudent } from '../interfaces/student';
+import {IStudent} from '../interfaces/student';
 import {environment} from "../../environments/environment";
+import {Router} from '@angular/router';
 
 const mockStudents: IStudent[] = [
   {
@@ -75,6 +76,7 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
   ) {
     const value = localStorage.getItem('isUseLocalStorage');
     if (value === null) {
@@ -123,6 +125,35 @@ export class ApiService {
         console.log('Сохранение student', student);
       } else {
         console.log('Сохранение student', student);
+      }
+    }
+  }
+
+  public postNewStudent(student: IStudent) {
+    if (this.isUseLocalStorage) {
+      const value = localStorage.getItem('students');
+      const studentsJson = value ? JSON.parse(value) : null;
+      const students: IStudent[] = studentsJson ? studentsJson as IStudent[] : [];
+
+      let id = 0;
+      if (students.length !== 0) {
+        const maxId = students.reduce((max, student) => {
+          return student?.id ?
+            student.id > max ? student.id : max
+            : max;
+        }, 0);
+        id = maxId + 1;
+      }
+
+      students.push({...student, id});
+
+      localStorage.setItem('students', JSON.stringify(students));
+      this.router.navigate(['/students', id]);
+    } else {
+      if (environment.production) {
+        console.log('Публикация student', student);
+      } else {
+        console.log('Публикация student', student);
       }
     }
   }

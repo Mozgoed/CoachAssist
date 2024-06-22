@@ -24,7 +24,7 @@
         [readonly]="isDisabled">
     </mat-form-field>
 
-    <mat-form-field class="full-width" *ngIf="student.date">
+    <mat-form-field class="full-width">
       <mat-label>Предмет</mat-label>
       <input matInput formControlName="subject" [readonly]="isDisabled">
     </mat-form-field>
@@ -34,7 +34,7 @@
       <input matInput formControlName="grade" [readonly]="isDisabled">
     </mat-form-field>
 
-    <mat-form-field class="full-width" *ngIf="student.date">
+    <mat-form-field class="full-width">
       <mat-label>Отец</mat-label>
       <input matInput formControlName="father" [readonly]="isDisabled">
     </mat-form-field>
@@ -44,7 +44,7 @@
       <input type="tel" matInput placeholder="+7-903-123-4567" formControlName="fatherPhone" [readonly]="isDisabled">
     </mat-form-field>
 
-    <mat-form-field class="full-width" *ngIf="student.date">
+    <mat-form-field class="full-width">
       <mat-label>Мать</mat-label>
       <input matInput formControlName="mother" [readonly]="isDisabled">
     </mat-form-field>

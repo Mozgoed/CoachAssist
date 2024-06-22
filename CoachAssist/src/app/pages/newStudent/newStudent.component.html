@@ -1,0 +1,63 @@
+<h2>Новый ученик</h2>
+
+<form [formGroup]="studentForm" class="ProfileWrapper">
+  <mat-form-field class="full-width">
+    <mat-label>ФИО</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Дата рождения</mat-label>
+    <input matInput formControlName="date" [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Телефон</mat-label>
+    <input
+      type="tel"
+      matInput placeholder="+7-903-123-4567"
+      formControlName="phone">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Предмет</mat-label>
+    <input matInput formControlName="subject">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Класс</mat-label>
+    <input matInput formControlName="grade">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Отец</mat-label>
+    <input matInput formControlName="father">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Телефон отца</mat-label>
+    <input type="tel" matInput placeholder="+7-903-123-4567" formControlName="fatherPhone">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Мать</mat-label>
+    <input matInput formControlName="mother">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Телефон матери</mat-label>
+    <input type="tel" matInput placeholder="+7-903-123-4567" formControlName="motherPhone">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Примечания</mat-label>
+    <textarea matInput rows="3"
+              placeholder='Надо потренировать уравнения'
+              formControlName="info"
+    ></textarea>
+  </mat-form-field>
+</form>
+<button mat-raised-button color="accent" (click)="postStudent()">Добавить ученика в базу</button>

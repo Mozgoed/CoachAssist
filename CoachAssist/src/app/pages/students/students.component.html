@@ -13,6 +13,10 @@
   </mat-card>
 </div>
 
+<div class="buttons-wrapper" *ngIf="students$ | async as students; else loading">
+  <button mat-raised-button color="primary" routerLink="/newStudent">Добавить ученика</button>
+</div>
+
 <ng-template #loading>
   <div class="spinner">
     <mat-spinner></mat-spinner>

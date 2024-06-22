@@ -9,6 +9,11 @@ const routes: Routes = [
     title: (route: ActivatedRouteSnapshot) => `Ученик номер ${route.paramMap.get('id')}`
   },
   {
+    path: 'newStudent',
+    loadComponent: () => import('./pages/newStudent/newStudent.component').then(m => m.NewStudentComponent),
+    title: 'Новый ученик',
+  },
+  {
     path: 'students',
     title: 'Ученики',
     loadChildren: () => import('./pages/students/students.module').then(m => m.StudentsModule),
